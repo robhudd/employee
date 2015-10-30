@@ -12,23 +12,25 @@ __author__ = 'rob00000'
 
 employee_db = {"Rob" : 39, "Amit" : 33, "Bruce" : 50, "Terry" : 51, "Harbie" : 29}
 
-print employee_db["Rob"]
 
 def show_all():
-    print "show_all"
+    print "Show all Employees" + "\n"
+    # prints all employee names out along with their ages
     for name in employee_db:
-        print "Name: " + name + " Age: " ,employee_db.get(name), "\n"
+        print "Name: " + name + " Age: " ,employee_db.get(name)
+    print "End of list" + "\n"
 
 def add_employee():
-    print "add_employee"
-    name = raw_input("Enter New Employees Name: " + "\n")
+    name = raw_input("Enter New Employees Name, or type exit if you are here by accident: " + "\n")
     age = raw_input("Enter New Employees Age:" + "\n")
-    new_employee = {name : age}
-    employee_db.update(new_employee)
-    print employee_db.items()
+    if name == "exit":
+        return menu_options()
+    else:
+        new_employee = {name.title() : age}
+        employee_db.update(new_employee)
+        print show_all()
 
 def delete_employee():
-    print "delete_employee"
     name = raw_input("Enter Name of Employee You Would Like to Delete:" + "\n")
     if name.title() in employee_db:
         cert = raw_input("Are You Sure: Enter Y for Yes or N for No:" + "\n")
@@ -44,13 +46,11 @@ def delete_employee():
         print "Name is not in Datebase, Returning to Main Menu" + "\n"
 
 def find_employee():
-    print "find_employee"
     name = raw_input("Enter Employee You Are Looking For:" + "\n")
     if name.title() in employee_db:
-        print name.title(), employee_db.get(name.title())
+        print "Name: " + name.title() + " Age: " ,employee_db.get(name.title())
     else:
         print "Employee is not in database, returning to main menu" + "\n"
-
 
 def exit():
     print "Exiting \n"
